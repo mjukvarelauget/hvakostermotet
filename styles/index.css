@@ -1,0 +1,41 @@
+/* variables */
+:root {
+    --meeting-controlls-height: 150px;
+    --add-participant-button: 200px;
+}
+
+
+/* Overall structure */
+main {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.display-wrapper {
+    width: 65%;
+    height: 100%;
+}
+
+.participant-wrapper {
+    width: 35%;
+    height: 100%;
+}
+
+/* Projection */
+.projection-wrapper {
+    height: calc(100% - var(--meeting-controlls-height));
+}
+
+.meeting-controll-wrapper {
+    height: var(--meeting-controlls-height);
+}
+
+/* Participants */
+.participant-list-wrapper {
+    height: calc(100% - var(--add-participant-button));
+}
+
+.add-participant-wrapper {
+    height: var(--add-participant-button);
+}
