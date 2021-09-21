@@ -3,6 +3,8 @@
   <meta charset="utf-8"></meta>
   <link rel="stylesheet" href="styles/meyerReset.css">
   <link rel="stylesheet" href="styles/index.css">
+
+  <script src="webComponents/sevenSegment.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -10,6 +12,56 @@
     <div class="display-wrapper">
       <div class="projection-wrapper">
 	You are in homepage
+	<div class="projection">
+	  <div class="top-wrapper">
+	    <h2> Møtet har vart i </h2>
+	  </div>
+	  <div class="center-wrapper">
+	    <div class="timer hours">
+	      <div class="segment-display-wrapper">
+		<seven-segment-display
+		  format="dd"
+		  value="00"
+		  >
+		</seven-segment-display>
+	      </div>
+		<span> timer </span>
+	    </div>
+	    <div class="timer minutes">
+	      <div class="segment-display-wrapper">
+		<seven-segment-display
+		  format="dd"
+		  value="00"
+		  >
+		</seven-segment-display>
+	      </div>
+	      <span> minutter </span>
+	    </div>
+	    <div class="timer seconds">
+	      <div class="segment-display-wrapper">
+		<seven-segment-display
+		  format="dd"
+		  value="00"
+		  >
+		</seven-segment-display>
+	      </div>
+	      <span> sekunder </span>
+	    </div>
+	  </div>
+	  <div class="bottom-wrapper">
+	    <h2> Og har kosta </h2>
+	    <div class="cost-counter">
+	      <div class="segment-display-wrapper">
+		<seven-segment-display
+		  format="ddddddddd.*dd"
+		  value="00000000000";
+		  >
+		</seven-segment-display>
+	      </div>
+	      <span> kroner </span>
+	    </div>
+	  </div>
+	</div>
       </div>
       <div class="meeting-controll-wrapper">
 	Meeting controlls here

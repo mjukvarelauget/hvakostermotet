@@ -2,6 +2,7 @@
 :root {
     --meeting-controlls-height: 150px;
     --add-participant-button: 200px;
+    --minimum-height: 600px;
 }
 
 
@@ -25,17 +26,92 @@ main {
 /* Projection */
 .projection-wrapper {
     height: calc(100% - var(--meeting-controlls-height));
+    min-height: var(--minimum-height)
 }
 
 .meeting-controll-wrapper {
     height: var(--meeting-controlls-height);
 }
 
+.projection {
+    margin: 20px;
+    border: solid;
+    height: calc(90% - 40px);
+}
+
+/* Projection header */
+.projection .top-wrapper {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.projection .top-wrapper h2 {
+    margin-top: 10px;
+    font-size: 30pt;
+}
+
+/* Projection time counters */
+.projection .center-wrapper {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.projection .center-wrapper .timer {
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.projection .center-wrapper > .timer .segment-display-wrapper{
+    width: 40%;
+    display: flex;
+    justify-content: right;
+}
+
+.projection .center-wrapper > .timer span{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+    font-size: 20pt;
+}
+
+/* Projection cost counter */
+.projection .bottom-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.projection .bottom-wrapper h2 {
+    font-size: 30pt;
+    margin-bottom: 20px;
+}
+
+.projection .cost-counter {
+    width: 100%;
+    display:flex;
+    align-items: center;
+}
+
+.projection .cost-counter .segment-display-wrapper {
+    margin-left: 30%;
+}
+
+.projection .cost-counter span {
+    font-size: 20pt;
+    margin-left: 10px;
+}
+
 /* Participants */
 .participant-list-wrapper {
     height: calc(100% - var(--add-participant-button));
+    min-height: var(--minimum-height)
 }
 
 .add-participant-wrapper {
     height: var(--add-participant-button);
 }
+
