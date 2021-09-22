@@ -71,11 +71,13 @@ const updateProjection = () => {
   cost = Math.round(cost*100)/100;
   cost = cost.toFixed(2);
   let costString = cost.toString();
-  
-  // Pad
-  costString = zeroPadValue(cost, costDigits);
+
   // Remove dot
   costString = costString.replace('.', '');
+
+  // Pad
+  costString = zeroPadValue(cost, costDigits);
+
   // Update
   costDisplay.setAttribute("value", costString);
   
