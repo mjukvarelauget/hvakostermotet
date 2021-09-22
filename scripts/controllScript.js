@@ -68,6 +68,8 @@ const calculateCost = (elapsedSeconds) => {
   return elapsedSeconds * (hourCost/3600);
 }
 
+// TODO only visible update is on second change,
+// might want to avoid updates that do not change visual state
 const updateProjection = () => {
   elapsedTime = Date.now() - startTime;
   let hours; let minutes; let seconds;

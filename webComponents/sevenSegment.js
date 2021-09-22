@@ -40,8 +40,8 @@ class SevenSegmentDigit extends HTMLElement {
     this.lightState = 0b0000000;
 
     // The colors used for the display
-    this.onColor = "red";
-    this.offColor = "#3d0f04";
+    this.onColor = "#ff3010";
+    this.offColor = "#300205";
 
     
     // Run setup and render inital state
