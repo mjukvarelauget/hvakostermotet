@@ -24,11 +24,28 @@ const startClock = () => {
   window.requestAnimationFrame(updateProjection);
 }
 
+const pauseClock = () => {
+  runing = false;
+}
+
+const resumeClock = () => {
+  running = true;
+}
+
 const zeroPadValue = (value, numDigits) => {
   let paddedValue = value.toString();
   const valueLength = paddedValue.length;
   for(let i = valueLength; i < numDigits; i++) {
     paddedValue = "0" + paddedValue;
+  }
+  return paddedValue;
+}
+
+const blankPadValue = (value, numDigits) => {
+  let paddedValue = value.toString();
+  const valueLength = paddedValue.length;
+  for(let i = valueLength; i < numDigits; i++) {
+    paddedValue = "_" + paddedValue;
   }
   return paddedValue;
 }
@@ -71,12 +88,12 @@ const updateProjection = () => {
   cost = Math.round(cost*100)/100;
   cost = cost.toFixed(2);
   let costString = cost.toString();
-
+  
   // Remove dot
   costString = costString.replace('.', '');
 
   // Pad
-  costString = zeroPadValue(cost, costDigits);
+  costString = blankPadValue(costString, costDigits);
 
   // Update
   costDisplay.setAttribute("value", costString);

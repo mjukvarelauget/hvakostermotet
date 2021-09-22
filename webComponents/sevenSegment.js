@@ -51,15 +51,9 @@ class SevenSegmentDigit extends HTMLElement {
   }
   
   setupState() {
-    this.value =
-      this.hasAttribute("value") ?
-      parseInt(this.getAttribute("value"), 10) :
-      0;
-
-    // Clamp to a single digit
-    if(this.value > 9) {this.value = 9;}
-    if(this.value < 0) {this.value = 0;}
-
+    // This method is called before document load
+    this.value = 0;
+    this.disable = false;    
   }
 
   // Optimisation: avoid transforms
@@ -133,7 +127,7 @@ class SevenSegmentDigit extends HTMLElement {
   }
 
   static get observedAttributes(){
-    return ["value"];
+    return ["value", "disable"];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -143,15 +137,31 @@ class SevenSegmentDigit extends HTMLElement {
       if(name == "value") {
 	this.value =
 	  parseInt(newValue, 10);
-
+	
 	if (isNaN(this.value)) {
-	  this.value = 0;
+	  if(newValue === "-") {
+	    this.value = -1;
+	  }
+	  else {
+	    this.value = 0;
+	  }
 	}
-	// Clamp to a single digit
-	if(this.value > 9) {this.value = 9;}
-	if(this.value < 0) {this.value = 0;}
-
+	else {
+	  // Clamp to a single digit
+	  if(this.value > 9) {this.value = 9;}
+	  if(this.value < 0) {this.value = 0;}
+	}
 	// Render new value of this.value
+	this.render();
+      }
+
+      if(name == "disable") {
+	if(newValue == "true") {
+	  this.disable = true;
+	}
+	else {
+	  this.disable = false;
+	}
 	this.render();
       }
     }
@@ -165,7 +175,16 @@ class SevenSegmentDigit extends HTMLElement {
   //*** Render ***
   // Update buffer, then swap currently displayed SVG tree with buffer
   render() {
-    let newPattern = SevenSegmentDigit.lightPatterns[this.value];
+    let newPattern;
+    if(this.disable) {
+      newPattern = 0b0000000;
+    }
+    else if(this.value === -1) {
+      newPattern = 0b0001000;
+    }
+    else {
+      newPattern = SevenSegmentDigit.lightPatterns[this.value];
+    }
     let isOn = 0;
     // Check bits of new pattern. If 1 turn light on, if 0 turn light off
     let bufferLights = this.svgBuffer.querySelector("g").childNodes;
@@ -435,7 +454,13 @@ class SevenSegmentDisplay extends HTMLElement {
       }
       // Compare digit in value to the digit already written
       if(curDigitValue !== this.value[i]) {
-	curDigit.setAttribute("value", curInputDigit);
+	if(this.value[i] === "_") {
+	  curDigit.setAttribute("disable", "true");
+	}
+	else {
+	  curDigit.setAttribute("disable", "false");
+	  curDigit.setAttribute("value", curInputDigit);
+	}
       }
     }
   }
@@ -505,11 +530,13 @@ class SevenSegmentDisplay extends HTMLElement {
 	// Reuse
 	if(digits.length > 1) {
 	  newNode = oldChildNodes[digits.shift()];
+	  newNode.setAttribute("disable", "false");	  
 	}
 	// Create new
 	else {
 	  newNode = document.createElement("seven-segment-digit");
 	  newNode.style.margin = "0px 2px 0px 2px";
+	  newNode.setAttribute("disable", "false");
 	}
       }
       else if(curChar === '.') {
