@@ -3,6 +3,7 @@
     --meeting-controlls-height: 150px;
     --add-participant-button: 200px;
     --minimum-height: 600px;
+    --profile-picture-size: 150px;
 }
 
 
@@ -108,9 +109,48 @@ main {
 /* Participants */
 .participant-list-wrapper {
     height: calc(100% - var(--add-participant-button));
-    min-height: var(--minimum-height)
+    min-height: var(--minimum-height);
+    overflow: scroll;
+    background-color: #f0f0f0;
 }
 
+.participant-list-wrapper .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20pt;
+    min-height: 70px;
+}
+
+.participant-list-wrapper li {
+    height: 150px;
+    display: flex;
+}
+
+.participant .profile-picture-wrap {
+    height: 100%;
+    min-width: 150px;
+    width: var(--profile-picture-size);
+}
+
+.participant img {
+    height: calc(100% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.participant .participant-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.participant .participant-info > * {
+    height: 25%;
+    font-size: 20pt;
+}
+
+/* Participant controlls */
 .add-participant-wrapper {
     height: var(--add-participant-button);
 }
