@@ -118,8 +118,10 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20pt;
+    font-size: 30pt;
     min-height: 70px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .participant-list-wrapper li {

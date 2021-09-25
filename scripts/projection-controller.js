@@ -1,6 +1,7 @@
 // Must be loaded as module to keep internal state hidden. This export statement
 // forces module loading
 export default null;
+
 let startTime = Date.now();
 let elapsedTime = 0;
 let hourCost = 1000;
@@ -119,3 +120,7 @@ const init = () => {
   
 window.addEventListener('load', init);
 
+// External interfaces
+export const updateHourCost = (newCost) => {
+  hourCost = newCost;
+}
