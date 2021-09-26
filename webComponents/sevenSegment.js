@@ -29,6 +29,9 @@ class SevenSegmentDigit extends HTMLElement {
       0b1111111, //8
       0b1101111  //9
     ];
+
+  static defaultWidth = "32";
+  static defaultHeight = "60";
   
   //*** Setup ***
   constructor() {
@@ -52,8 +55,11 @@ class SevenSegmentDigit extends HTMLElement {
   
   setupState() {
     // This method is called before document load
+    // Default state
     this.value = 0;
-    this.disable = false;    
+    this.disable = false;
+    this.width = SevenSegmentDigit.defaultWidth;
+    this.height = SevenSegmentDigit.defaultHeight;
   }
 
   // Optimisation: avoid transforms
@@ -61,8 +67,13 @@ class SevenSegmentDigit extends HTMLElement {
     let svgNS = "http://www.w3.org/2000/svg";
     let svgRoot = document.createElementNS(svgNS, "svg");
     svgRoot.setAttributeNS(null,"id","svgRoot");
-    svgRoot.setAttributeNS(null,"height","60");
-    svgRoot.setAttributeNS(null,"width","32");
+    svgRoot.setAttributeNS(null,"height", this.height);
+    svgRoot.setAttributeNS(null,"width", this.width);
+    svgRoot.setAttributeNS(
+      null,
+      "viewBox",
+      "0 0 " + SevenSegmentDigit.defaultWidth + " " + SevenSegmentDigit.defaultHeight
+    );
     
     
     let wrapperGroup = document.createElementNS(svgNS, "g");
@@ -127,7 +138,7 @@ class SevenSegmentDigit extends HTMLElement {
   }
 
   static get observedAttributes(){
-    return ["value", "disable"];
+    return ["value", "disable", "height", "width"];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -155,7 +166,7 @@ class SevenSegmentDigit extends HTMLElement {
 	this.render();
       }
 
-      if(name == "disable") {
+      else if(name == "disable") {
 	if(newValue == "true") {
 	  this.disable = true;
 	}
@@ -164,7 +175,36 @@ class SevenSegmentDigit extends HTMLElement {
 	}
 	this.render();
       }
+
+      // If widht or height are given illegal values, revert to defaults
+      else if(name == "width") {
+	if(!isNaN(parseInt(newValue, 10))) {
+	  this.width = newValue;
+	}
+	else {
+	  this.width = SevenSegmentDigit.defaultWidth;
+	}
+	this.updateDOM();
+	this.render();
+      }
+
+      else if(name == "height") {
+	if(!isNaN(parseInt(newValue, 10))) {
+	  this.height = newValue;
+	}
+	else {
+	  this.height = SevenSegmentDigit.defaultHeight;
+	}
+	this.updateDOM();
+	this.render();
+      }
     }
+  }
+
+  updateDOM() {
+    let svgRoot = this.shadowRoot.querySelector("svg");
+    svgRoot.setAttributeNS(null, "width", this.width);
+    svgRoot.setAttributeNS(null, "height", this.height);
   }
 
   // Boilerplate
@@ -316,6 +356,7 @@ class SevenSegmentDisplay extends HTMLElement {
 
     // Add margin style to all children
     while(bufferStart < this.format.length) {
+      console.log(bufferStart)
       let curChar = this.format[bufferStart];
    
       if(curChar == "d" || curChar == "D") {
@@ -326,6 +367,15 @@ class SevenSegmentDisplay extends HTMLElement {
 	digitCount += 1;
       }
 
+      else if(curChar == "_") {
+	let digit = document.createElement("seven-segment-digit");
+	digit.style.margin = "0px 2px 0px 2px";
+	digit.setAttribute("disable", "true");
+	wrapperElem.appendChild(digit);
+	bufferStart += 1;
+	digitCount += 1;
+      }
+      
       // Create ':' in off state if alone, or on state if followed by '*'
       else if(curChar == ':') {
 	if((bufferStart + 1) < this.format.length
@@ -363,6 +413,10 @@ class SevenSegmentDisplay extends HTMLElement {
 	  wrapperElem.appendChild(newUnlitDot);
 	  bufferStart += 1;
 	}
+      }
+      // We found some invalid char, gotta increment the buffer ponter to get past it
+      else {
+	bufferStart += 1;
       }
     }
     

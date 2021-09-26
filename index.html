@@ -5,145 +5,52 @@
   <link rel="stylesheet" href="styles/index.css">
 
   <script src="webComponents/sevenSegment.js" type="text/javascript"></script>
-  <script src="scripts/projection-controller.js" type="module"></script>
-  <script src="scripts/participant-controller.js" type="module"></script>
+  <!--<script src="scripts/projection-controller.js" type="module"></script>-->
+  <!--<script src="scripts/participant-controller.js" type="module"></script>-->
 </head>
 
 <body>
+  <header>
+    <h1> Hvor mye koster møtet? </h1>
+    <hr />
+  </header>
   <main>
-    <div class="display-wrapper">
-      <div class="projection-wrapper">
-	<div class="projection">
-	  <div class="top-wrapper">
-	    <h2> Møtet har vart i </h2>
-	  </div>
-	  <div class="center-wrapper">
-	    <div class="timer hours">
-	      <div class="segment-display-wrapper">
-		<seven-segment-display
-		  format="dd"
-		  value="00"
-		  >
-		</seven-segment-display>
-	      </div>
-		<span> timer </span>
-	    </div>
-	    <div class="timer minutes">
-	      <div class="segment-display-wrapper">
-		<seven-segment-display
-		  format="dd"
-		  value="00"
-		  >
-		</seven-segment-display>
-	      </div>
-	      <span> minutter </span>
-	    </div>
-	    <div class="timer seconds">
-	      <div class="segment-display-wrapper">
-		<seven-segment-display
-		  format="dd"
-		  value="00"
-		  >
-		</seven-segment-display>
-	      </div>
-	      <span> sekunder </span>
-	    </div>
-	  </div>
-	  <div class="bottom-wrapper">
-	    <h2> Og har kosta </h2>
-	    <div class="cost-counter">
-	      <div class="segment-display-wrapper">
-		<seven-segment-display
-		  format="ddddddddd.*dd"
-		  value="00000000000";
-		  >
-		</seven-segment-display>
-	      </div>
-	      <span> kroner </span>
-	    </div>
-	  </div>
-	</div>
+    <div class="counter-screen-wrapper">
+      <div class="clock-section">
+	<seven-segment-display
+	  class="clock"
+	  >
+	</seven-segment-display>
       </div>
-      <div class="meeting-controll-wrapper">
-	Meeting controlls here
+      <div class="cost-counter-section">
+	<seven-segment-display
+	  class="cost-counter"
+	  format="__d.*dd"
+	  value="0000000"
+	  >
+	</seven-segment-display>
       </div>
     </div>
-
-    <div class="participant-wrapper">
-      <div class="participant-list-wrapper">
-	<div class="header">
-	  <h1>Deltagere</h1>
-	</div>
-	<ul>
-	  <li class="participant">
-	    <div class="profile-picture-wrap">
-	      <img src="images/mjukfisk_kaksel.png" alt="rik mjukfisk"></img>
+    <div class="participants-wrapper">
+      <ul>
+	<li class="participant">
+	  <div class="actions-wrapper">
+	    <div class="edit-button-wrap">
+	      <button>Edit</button>
 	    </div>
-	    <div class="participant-info">
-	      <div class="name">
-		Mjukleif
-	      </div>
-	      <div class="position">
-		CEO
-	      </div>
-	      <div class="pay">
-		3000
-	      </div>
+	    <div class="delete-button-wrap">
+	      <button>Remove</button>
 	    </div>
-	  </li>
-	   <li class="participant">
-	     <div class="profile-picture-wrap">
-	       <img src="images/mjukfisk_arbe.png" alt="mjukfisk på arbeid"></img>
-	     </div>
-	     <div class="participant-info">
-	       <div class="name">
-		 Geir Gunnar
-	       </div>
-	       <div class="position">
-		 Mjukvaresnekker
-	       </div>
-	       <div class="pay">
-		 700
-	       </div>
-	     </div>
-	   </li>
-	    <li class="participant">
-	    <div class="profile-picture-wrap">
-	      <img src="images/blautfisk.png" alt="snek"></img>
-	    </div>
-	    <div class="participant-info">
-	      <div class="name">
-		Snek
-	      </div>
-	      <div class="position">
-		Snek
-	      </div>
-	      <div class="pay">
-		1500
-	      </div>
-	    </div>
-	    </li>
-	  <li class="participant">
-	    <div class="profile-picture-wrap">
-	      <img src="images/mjukfisk.png" alt="en helt vanlig mjukvarefisk"></img>
-	    </div>
-	    <div class="participant-info">
-	      <div class="name">
-		Mjukfisken
-	      </div>
-	      <div class="position">
-		Designer
-	      </div>
-	      <div class="pay">
-		1000
-	      </div>
-	    </div>
-	  </li>
-	</ul>
-      </div>
-      <div class="add-participant-wrapper">
-	"Add participant" button here
-      </div>
+	  </div>
+	  <div class="image-wrap">
+	    <img src="images/mjukfisk_kaksel.png" alt="Rik mjukfisk"></img>
+	  </div>
+	  <div class="info">
+	    <span>Leif</span>
+	    <span>750kr/t</span>
+	  </div>
+	</li>
+      </ul>
     </div>
   </main>
 </body>

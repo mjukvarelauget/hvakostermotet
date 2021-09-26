@@ -12,7 +12,6 @@ let participants = [];
 class Participant {
   constructor(name, position, pay) {
     this.name = name;
-    this.position = position;
     this.pay = pay;
   }
 }
@@ -32,27 +31,12 @@ const removeWhitespace = (string) => {
 
 // Translate from DOM list element into participant object
 const readParticipants = () => {
-  participants = [];
-  for(let participantListElem of participantListDOM) {
-    let name =
-      removeWhitespace(participantListElem.querySelector(".name").textContent);
-    let position =
-      removeWhitespace(participantListElem.querySelector(".position").textContent);
-    let pay =
-      removeWhitespace(participantListElem.querySelector(".pay").textContent);
 
-    let curParticipant = new Participant(name, position, parseInt(pay, 10));
-    participants.push(curParticipant);
-  }
-  numParticipants = participants.length;
 }
 
 // Scan through the list of participants, get payment, add it up
 const getTotalHourPay = ()  => {
-  totalHourCost = 0;
-  for(let participant of participants) {
-    totalHourCost += participant.pay;
-  }
+
 }
 
 

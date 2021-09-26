@@ -8,152 +8,27 @@
 
 
 /* Overall structure */
-main {
-    display: flex;
+body {
     height: 100vh;
     width: 100vw;
 }
 
-.display-wrapper {
-    width: 65%;
-    height: 100%;
+/* Heder */
+header {
+    margin: 30px 10% 0 10%;
+    width: 80%;
 }
 
-.participant-wrapper {
-    width: 35%;
-    height: 100%;
-}
-
-/* Projection */
-.projection-wrapper {
-    height: calc(100% - var(--meeting-controlls-height));
-    min-height: var(--minimum-height)
-}
-
-.meeting-controll-wrapper {
-    height: var(--meeting-controlls-height);
-}
-
-.projection {
-    margin: 20px;
-    border: solid;
-    height: calc(90% - 40px);
-}
-
-/* Projection header */
-.projection .top-wrapper {
-    height: 50px;
-    display: flex;
-    justify-content: center;
-}
-
-.projection .top-wrapper h2 {
-    margin-top: 10px;
-    font-size: 30pt;
-}
-
-/* Projection time counters */
-.projection .center-wrapper {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-}
-
-.projection .center-wrapper .timer {
-    display: flex;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.projection .center-wrapper > .timer .segment-display-wrapper{
-    width: 40%;
-    display: flex;
-    justify-content: right;
-}
-
-.projection .center-wrapper > .timer span{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 20px;
-    font-size: 20pt;
-}
-
-/* Projection cost counter */
-.projection .bottom-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.projection .bottom-wrapper h2 {
+header h1 {
     font-size: 30pt;
     margin-bottom: 20px;
 }
 
-.projection .cost-counter {
-    width: 100%;
-    display:flex;
-    align-items: center;
+/* Main content */
+main {
+    width: 80%;
+    height: 70%;
+    margin: 0 10% 0 10%;
 }
 
-.projection .cost-counter .segment-display-wrapper {
-    margin-left: 30%;
-}
-
-.projection .cost-counter span {
-    font-size: 20pt;
-    margin-left: 10px;
-}
-
-/* Participants */
-.participant-list-wrapper {
-    height: calc(100% - var(--add-participant-button));
-    min-height: var(--minimum-height);
-    overflow: scroll;
-    background-color: #f0f0f0;
-}
-
-.participant-list-wrapper .header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30pt;
-    min-height: 70px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.participant-list-wrapper li {
-    height: 150px;
-    display: flex;
-}
-
-.participant .profile-picture-wrap {
-    height: 100%;
-    min-width: 150px;
-    width: var(--profile-picture-size);
-}
-
-.participant img {
-    height: calc(100% - 40px);
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-.participant .participant-info {
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-}
-
-.participant .participant-info > * {
-    height: 25%;
-    font-size: 20pt;
-}
-
-/* Participant controlls */
-.add-participant-wrapper {
-    height: var(--add-participant-button);
-}
-
+/* participants list */
