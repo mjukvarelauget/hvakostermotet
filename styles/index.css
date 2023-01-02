@@ -31,4 +31,59 @@ main {
     margin: 0 10% 0 10%;
 }
 
+/* Timer controls */
+.time-controll-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.time-controll-wrapper .button-wrap {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.time-controll-wrapper button {
+    font-size: 20px;
+}
+
+/* Counter */
+.counter-screen-wrapper {
+    font-size: 60px;
+}
+
+.counter-screen-wrapper .counter-description {
+    margin-right: 20px;
+}
+
+.counter-screen-wrapper .currency-text {
+    margin-left: 20px;
+}
+
+.counter-screen-wrapper .cost-counter {
+    border-style: solid;
+    border-width: 5px;
+}
+
+
 /* participants list */
+.participant-card {
+    display: flex;
+    flex-direction: row;
+}
+
+.participant-card .participant {
+    width: 200px;
+    height: 100px;
+    display: flex;
+} 
+
+.participant-card .image-wrap {
+    width: 100px;
+    height: 100px;
+}
+ 
+.participant-card .image-wrap img{
+    width: 100%;
+    height: 100%;
+}

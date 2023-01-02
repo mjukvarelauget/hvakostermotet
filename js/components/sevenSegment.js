@@ -522,7 +522,7 @@ class SevenSegmentDisplay extends HTMLElement {
   // We know something changed in the format string when this
   // method is called. The question is what
   renderFormat(oldFormat) {
-    // No rendering before the element is actually loaded
+    // Discard render requests before display is loaded
     if(!this.loaded) {
       return;
     }
@@ -686,7 +686,7 @@ class SevenSegmentDisplay extends HTMLElement {
     let margin = 2;
     for(let i = 0; i < formatString.length; i++) {
       curChar = formatString[i];
-      if(curChar === 'd' || curChar == 'D') {
+      if(curChar === 'd' || curChar == 'D' || curChar == '_') {
 	width += (margin + digitWidth + margin);
       }
       else if(curChar === ':' || curChar === '.') {

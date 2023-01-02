@@ -4,54 +4,76 @@
   <link rel="stylesheet" href="styles/meyerReset.css">
   <link rel="stylesheet" href="styles/index.css">
 
-  <script src="webComponents/sevenSegment.js" type="text/javascript"></script>
+  <script src="js/components/sevenSegment.js" type="module"></script>
+  <script src="js/components/participants/participants.js" type="module"></script>
   <!--<script src="scripts/projection-controller.js" type="module"></script>-->
   <!--<script src="scripts/participant-controller.js" type="module"></script>-->
 </head>
 
 <body>
   <header>
-    <h1> Hvor mye koster møtet? </h1>
+    <h1> Hva koster møtet? </h1>
     <hr />
   </header>
   <main>
-    <div class="counter-screen-wrapper">
-      <div class="clock-section">
-	<seven-segment-display
-	  class="clock"
-	  >
-	</seven-segment-display>
+
+    <!--
+	TODO Should support start, pause and reset
+      -->
+    <div class="time-controll-wrapper">
+      <div class="button-wrap">
+	<button class="start">START MØTE</button>
       </div>
-      <div class="cost-counter-section">
+      <div class="button-wrap">
+	<button class="pause">PAUS MØTE</button>
+      </div>
+      <div class="button-wrap">
+	<button class="reset">START MØTE PÅ NYTT</button>
+      </div>
+      
+    </div>
+
+    <hr />
+    
+    <div class="counter-screen-wrapper">
+      <span class="counter-description">
+	Møtet har så langt kostet
+      </span>
+      <div>
 	<seven-segment-display
 	  class="cost-counter"
-	  format="__d.*dd"
-	  value="0000000"
+	  format="_____d"
+	  value="0"
 	  >
 	</seven-segment-display>
+	<span class="currency-text">NOK</span>
       </div>
     </div>
-    <div class="participants-wrapper">
-      <ul>
-	<li class="participant">
-	  <div class="actions-wrapper">
-	    <div class="edit-button-wrap">
-	      <button>Edit</button>
-	    </div>
-	    <div class="delete-button-wrap">
-	      <button>Remove</button>
-	    </div>
-	  </div>
+    
+    <participant-list>
+      <template class="participant-card">
+
+	<div class="participant">
 	  <div class="image-wrap">
 	    <img src="images/mjukfisk_kaksel.png" alt="Rik mjukfisk"></img>
 	  </div>
+
 	  <div class="info">
-	    <span>Leif</span>
-	    <span>750kr/t</span>
+	    <span class="name">Leif</span>
+	    <span class="pay">1000kr/t</span>
 	  </div>
-	</li>
-      </ul>
-    </div>
+	</div>
+
+	<div class="actions-wrapper">
+	  <div class="edit-button-wrap">
+	    <button>Endre</button>
+	  </div>
+	  <div class="delete-button-wrap">
+	    <button>Hiv ut</button>
+	  </div>
+	</div>
+      </template>
+    </participant-list>
   </main>
 </body>
 
